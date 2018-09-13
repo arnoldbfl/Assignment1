@@ -1,0 +1,10 @@
+#searchBar {
+  margin: 15px 10px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.tableWrapper {
+  max-height: 400px;
+  overflow: auto;
+  font-family: 'Times New Roman', Times, serif;
+}

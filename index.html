@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-app="directoryApp">
+    <div class="container">
+      <div class="row" id="page_header">
+        <h1>UF DIRECTORY APP</h1>
+      </div>
+      <div class="row" ng-controller="ListingsController">
+          <div class="col-md-6">
+              <div class="input-group" id="searchBar">
+                  <script>
+                      var info, filter;
+                      info = listingFactory.getElementById('myInput');
+                      filter = info.value.toUpperCase();
+                  </script>
+                  <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                  <input type="text" class="form-control" placeholder="Search" ng-model="filter">
+              </div>
+              <div class="tableWrapper">
+                  <table class="table table-striped table-hover">
+                      <tr>
+                          <th>CODE</th>
+                          <th>BUILDING NAME</th>
+                      </tr>
+                      <div>
+                          <tr class="test" ng-repeat="element in Listings | filter: filter as results" ng-click="showDetails(indexOf(element))" ng-init="parentIndex"=$index>
+                          <td>{{element.code}}</td>
+                          <td>{{element.name}}</td>
+                          <button class="RemoveButton" ng-click="deleteListings(listings.indexOf(listing))">
+                              DELETE LISTING
+                              <span class="glyphicon glyphicon-remove"></span>
+                          </button>
+                          <button class="ShowDetails" ng-click="showDetails(listings.indexOf(listing))">
+                              SHOW DETAILS
+                              <span class="glyphicon glyphicon-remove"></span>
+                          </button>
+                          </tr>
+                      </div>
+                      
+                  </table>
+              </div>
+              
+              <form type="button" ng-click="addListing(listings)">
+                  ADD LISTING<br /><br />
+                  Code: <br><input type="text" name="code"><br>
+                  Name: <br><input type="text" name="name"><br>
+                  Latitude: <br><input type="text" name="latt"><br>
+                  Longitude: <br><input type="text" name "long"><br>
+                  Address: <br><input type="text" name="addr"><br>
+              </form>
+              <button>
+                  <input type="submit" class=" btn btn-primary btn-lg" value="ADD">
+              </button>
+          </div>
+        <div class="col-md-6">
+            <div class="jumbotron">
+                <h2>DETAILED INFORMATION</h2>
+                    <p ng-bind="detailedInfo.code"></p>
+                    <p ng-bind="detailedInfo.name"></p>
+                    <p ng-bind="detailedInfo.address"></p>
+                    <p ng-bind="detailedInfo.latitude"></p>
+                    <p ng-bind="detailedInfo.longitude"></p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="listingController.js"></script>
+    <script src="listingFactory.js"></script>
+  </body>
+</html>
